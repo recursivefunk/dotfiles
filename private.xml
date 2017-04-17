@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>Media Keys</name>
+    <identifier>private.map_page_to_media</identifier>
+    <autogen>--KeyToConsumer-- KeyCode::PAGEDOWN, ConsumerKeyCode::VOLUME_DOWN</autogen>
+    <autogen>--KeyToConsumer-- KeyCode::PAGEUP, ConsumerKeyCode::VOLUME_UP</autogen>
+    <autogen>--KeyToConsumer-- KeyCode::PC_INSERT, ConsumerKeyCode::MUSIC_PLAY</autogen>
+    <autogen>--KeyToConsumer-- KeyCode::PC_DEL, ConsumerKeyCode::MUSIC_PREV</autogen>
+    <autogen>--KeyToConsumer-- KeyCode::END, ConsumerKeyCode::MUSIC_NEXT</autogen>
+  </item>
+</root>
