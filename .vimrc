@@ -88,6 +88,7 @@ set backupcopy=yes                                    " see :help crontab
 set clipboard=unnamed                                 " yank and paste with the system clipboard
 set directory-=.                                      " don't store swapfiles in the current directory
 set encoding=utf-8
+set nowrap
 set expandtab
 set history=100                                       " remember more than 20 cmd-history
 set ignorecase                                        " case-insensitive search
@@ -158,4 +159,3 @@ endif
 if (has("termguicolors"))
   set termguicolors
 endif
-
