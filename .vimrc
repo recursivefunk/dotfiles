@@ -115,10 +115,22 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 " Enable JSX for .js files
 let g:jsx_ext_require=0
 
+
+" When invoked, unless a starting directory is specified, CtrlP will set its
+" local working directory according to this variable:
+" 'c' - the directory of the current file.
+" 'r' - the nearest ancestor that contains one of these directories or files: .git .hg .svn .bzr _darcs
+" 'a' - like c, but only if the current working directory outside of CtrlP is
+"       not a direct ancestor of the directory of the current file.
+" 0 or '' (empty string) - disable this feature.
+let g:ctrlp_working_path_mode = 'ra'
+" Exclude these from fuzzy search
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*     " MacOSX/Linux
+
 " Highlight the current line and column
 :set cursorline cursorcolumn
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
-hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white
+
 hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=NONE "guibg=lightgrey guifg=white
 
 "Indentation guides
@@ -130,6 +142,8 @@ let g:indent_guides_guide_size=1
 " 2 spaces for javascript
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd FileType html,css,python,go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
+" set vim working directory to the current file's directory
+autocmd BufEnter * lcd %:p:h
 
 filetype plugin indent on
 
