@@ -1,5 +1,4 @@
 " Modeline and Notes {
-"
 "  _____                          _             ______           _
 " |  __ \                        (_)           |  ____|         | |
 " | |__) |___  ___ _   _ _ __ ___ ___   _____  | |__ _   _ _ __ | | __
@@ -8,7 +7,7 @@
 " |_|  \_\___|\___|\__,_|_|  |___/_| \_/ \___| |_|   \__,_|_| |_|_|\_\
 "
 "
-"		I Believe In You.
+"               I Believe In You.
 "
 "
 "
@@ -16,7 +15,7 @@
 "
 "   Find me at https://recursivefunk.io/
 "
-"   Copyright 2018 Johnny Austin
+"   Copyright 2020 Johnny Austin
 "
 "   Licensed under the Apache License, Version 2.0 (the "License");
 "   you may not use this file except in compliance with the License.
@@ -39,8 +38,6 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-" Filetype icons
-Plugin 'ryanoasis/vim-devicons'
 
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
@@ -73,7 +70,26 @@ Plugin 'vim-scripts/HTML-AutoCloseTag'
 " JSDoc
 Plugin 'joegesualdo/jsdoc.vim'
 
+" Prettier
+Plugin 'mitermayer/vim-prettier'
+
+" Typescript
+Plugin 'leafgarland/typescript-vim'
+
+" Vuejs Component Files
+Plugin 'posva/vim-vue'
+
+" Filetype icons
+Plugin 'ryanoasis/vim-devicons'
+
+Plugin 'dense-analysis/ale'
 call vundle#end()            " required
+
+call plug#begin('~/.vim/plugged')
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+call plug#end()
 
 " don't bother with vi compatibility
 set nocompatible
@@ -87,7 +103,7 @@ set backspace=2                                       " Fix broken backspace in 
 set backupcopy=yes                                    " see :help crontab
 set clipboard=unnamed                                 " yank and paste with the system clipboard
 set directory-=.                                      " don't store swapfiles in the current directory
-set encoding=utf-8
+set encoding=UTF-8
 set nowrap
 set expandtab
 set history=100                                       " remember more than 20 cmd-history
@@ -111,9 +127,15 @@ set tabstop=4
 set textwidth=79
 set colorcolumn=80
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+set shell=$SHELL
 
 " Enable JSX for .js files
 let g:jsx_ext_require=0
+
+" Enable ESLint only for JavaScript.
+let b:ale_linters = ['eslint']
+
+let g:ale_sign_column_always = 1
 
 
 " When invoked, unless a starting directory is specified, CtrlP will set its
@@ -139,9 +161,10 @@ let g:indent_guides_auto_colors=1
 let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
 
-" 2 spaces for javascript
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
-autocmd FileType html,css,python,go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
+" 2 spaces for javascript/typescript
+autocmd Filetype javascript,typescript,yaml,html,vue setlocal ts=2 sts=2 sw=2
+autocmd Filetype python setlocal ts=4 sts=4 sw=4
+autocmd FileType css,go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
 " set vim working directory to the current file's directory
 autocmd BufEnter * lcd %:p:h
 
@@ -171,5 +194,5 @@ endif
 " }
 
 if (has("termguicolors"))
-  set termguicolors
+  "set termguicolors
 endif
